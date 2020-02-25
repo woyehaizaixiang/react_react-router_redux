@@ -1,6 +1,18 @@
 // 通用reducer
 const initState = {
-    num: 0
+    num: 0,
+    menuList: [
+        {
+            path: '/admin',
+            name: '啊大米',
+            children: [
+                {
+                    path: 'page1',
+                    name: '怕个1'
+                }
+            ]
+        }
+    ]
 }
 
 const actDefault = state => state;

@@ -26,8 +26,9 @@ export default class login extends Component {
         }
         axios.post('/login', data).then((res)=>{
             console.log(res);
+            sessionStorage.setItem('token', '65sdfsdf1sd1f6sd51f6sd4fs6df65sd4');
+            this.props.history.push('/admin');
         })
-        // sessionStorage.setItem('token', '65sdfsdf1sd1f6sd51f6sd4fs6df65sd4');
-        // this.props.history.push('/admin');
+        
     }
 }
