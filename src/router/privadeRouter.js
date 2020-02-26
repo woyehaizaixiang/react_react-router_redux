@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import NotFound from '../views/404';
 
 @connect(
     state => ({
@@ -15,15 +17,18 @@ class privadeRouter extends Component {
         let menuList = [...this.props.menuList];
         let spreadMenuList = this.steamroller(menuList) || [];
         let isAuthor = false; // 是否有当前路由权限
-        spreadMenuList.forEach(item=>{
-            if(item.path === path){ // 当前路径存在menuList中，即：权限存在
+        for(let i=0; i < spreadMenuList.length; i++){
+            if(spreadMenuList[i].path === path){ // 当前路径存在menuList中，即：权限存在
                 isAuthor = true;
+                break;
             }
-        })
+        }
         const {component:Component, ...rest} = this.props;
         return (
-            isLogin&&isAuthor ?
+            isLogin ?
+            isAuthor ?
             <Route {...rest} render={(props)=> <Component {...props}/>} /> :
+            <Route {...rest} component={ NotFound } /> :
             <Redirect to="/login" />
         )
     }
