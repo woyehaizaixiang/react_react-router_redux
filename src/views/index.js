@@ -5,18 +5,24 @@ import { onTestAdd } from '../action/app-action';
 
 import { Link } from 'react-router-dom';
 
-@connect(
-    state => ({
+const mapStateToProps = (state, ownProps) => {
+    return {
         num: state.app.num
-    }),
-    dispatch => ({
-        actions: bindActionCreators(
-            {
-                onTestAdd
-            },
-            dispatch
-        )
-    })
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators(
+        {
+            onTestAdd: onTestAdd
+        },
+        dispatch
+    )
+}
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps
 )
 
 class index extends Component {
@@ -38,8 +44,9 @@ class index extends Component {
 
     // 点击数字
     hanldeNum(num){
-        this.props.actions.onTestAdd(num);
+        this.props.onTestAdd(num);
     }
+
 }
 
 export default index;

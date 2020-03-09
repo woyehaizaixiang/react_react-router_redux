@@ -1,4 +1,69 @@
 .login{
     width: 100%;
-    background: #000;
+    height: 100%;
+    background: #FDFFFF;
+    display: flex;
+    color: #4D4F5C;
+    .left{
+        display: inline-block;;
+        width: 60%;
+        height: 100%;
+        background: url(../assets/login_bankground.png) no-repeat center;
+        background-size: cover;
+    }
+    .right{
+        display: table;
+        width: 40%;
+        min-width: 300px;
+        height: 100%;
+        .form{
+            display: table-cell;
+            vertical-align: middle;
+            .formContent{
+                width: 60%;
+                margin: 0 auto;
+                .title{
+                    p{
+                        line-height: 2;
+                        &:first-child{
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin: 0;
+                        }
+                        &:nth-child(2){
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin-bottom: 2em;
+                        }
+                    }
+                }
+                .loginform{
+                    .formItem{
+                        margin-bottom: 40px;
+                    }
+                    :global{
+                        .ant-form-item-with-help{
+                            margin-bottom: 16px;
+                        }
+                    }
+                    .input{
+                        border: none;
+                        border-bottom: 1px solid #d9d9d9;
+                        box-shadow: none;
+                        border-radius: 0;
+                        &:hover{
+                            border-bottom: 1px solid #3B86FF;
+                            box-shadow: none;
+                        }
+                    }
+                    :global{
+                        .ant-input-affix-wrapper-focused{
+                            border-bottom: 1px solid #3B86FF;
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

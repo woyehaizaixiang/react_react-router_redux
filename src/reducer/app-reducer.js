@@ -3,12 +3,16 @@ const initState = {
     num: 0,
     menuList: [
         {
-            path: '/admin',
-            name: '啊大米',
+            path: '/dashboard',
+            name: '首页'
+        },
+        {
+            path: '/auth',
+            name: '权限管理',
             children: [
                 {
-                    path: 'page1',
-                    name: '怕个1'
+                    path: '/auth/roleadmin',
+                    name: '角色管理'
                 }
             ]
         }
