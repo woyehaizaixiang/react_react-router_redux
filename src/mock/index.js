@@ -6,17 +6,30 @@ Mock.setup({
 })
 
 export default Mock.mock('/api/login', 'post', (req)=>{
-    console.log(req);
     let body = JSON.parse(req.body);
-    console.log(body);
     let data = {};
     if(body.username == 'biji' && body.password == '123456'){ // 用户名密码正确
         data = {
             code: 1,
             msg: '登录成功',
             data: {
-                taken: '46dsd51465fsdf46sd5423d1as1das86d8assdsaf',
-                menuList: []
+                token: '46dsd51465fsdf46sd5423d1as1das86d8assdsaf',
+                menuList: [
+                    {
+                        path: '/dashboard',
+                        name: '首页'
+                    },
+                    {
+                        path: '/auth',
+                        name: '权限管理',
+                        children: [
+                            {
+                                path: '/auth/roleadmin',
+                                name: '角色管理'
+                            }
+                        ]
+                    }
+                ]
             }
         }
     }else{

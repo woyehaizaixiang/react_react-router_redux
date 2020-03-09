@@ -10,8 +10,8 @@ export default class app extends Component {
             <div>
                 app
                 <Switch>
-                    <Redirect exact from='/app' to='/app/dashboard' />
-                    <Route path="/app/dashboard" exact component={ Dashboard } />
+                    <Redirect exact from='/' to='/dashboard' />
+                    <PrivadeRouter path="/dashboard" exact component={ Dashboard } />
                     <Route component={ NotFound } />
                 </Switch>
             </div>

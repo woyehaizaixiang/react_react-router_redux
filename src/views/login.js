@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators  } from 'redux';
 import { Form, Input, Button, message } from 'antd';
-import {
-    UserOutlined,
-    LockOutlined
-} from '@ant-design/icons';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from '@/util/axios.init.js';
 import style from './login.module.scss';
 import './login.module.scss';
+import { onLogin } from '@/action/app-action';
 
-export default class login extends Component {
+const mapStateToProps = (state, ownProps) => {
+    return state;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators(
+        {
+            onLogin: onLogin
+        },
+        dispatch
+    )
+}
+
+@connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+class login extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -105,15 +122,14 @@ export default class login extends Component {
             loading: true
         })
         let data = values;
-        axios.post('/login', data).then((res)=>{
+        this.props.onLogin(data).then((res)=>{
             if(res.code === 1){ // 登录成功
-                let token = res.data.token
-                sessionStorage.setItem('token', token);
-                this.props.history.push('/app');
+                let data = res.data;
+                let menuList = data.menuList;
+                this.props.history.push(menuList[0].path);
             }else{
                 message.error(res.msg);
             }
-            
         }).finally(err=>{
             this.setState({
                 loading: false
@@ -134,3 +150,5 @@ export default class login extends Component {
         }
     }
 }
+
+export default login;

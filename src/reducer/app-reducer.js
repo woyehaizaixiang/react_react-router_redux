@@ -1,22 +1,8 @@
 // 通用reducer
 const initState = {
     num: 0,
-    menuList: [
-        {
-            path: '/dashboard',
-            name: '首页'
-        },
-        {
-            path: '/auth',
-            name: '权限管理',
-            children: [
-                {
-                    path: '/auth/roleadmin',
-                    name: '角色管理'
-                }
-            ]
-        }
-    ]
+    token: sessionStorage.getItem('token') || '',
+    menuList: JSON.parse(sessionStorage.getItem('menuList')) || []
 }
 
 const actDefault = state => state;
@@ -33,11 +19,17 @@ const onTestAdd = (state, { payload }) => {
 const onLogout = (state, { payload }) => {
     return {
         ...state,
-        userInfo: null,
-        menus: [],
-        roles: [],
-        powers: [], // 权限add,del,edit,see)
+        menuList: [],
+        token: ''
+    }
+}
 
+// 登录
+const onLogin = (state, { payload }) => {
+    return{
+        ...state,
+        menuList: payload.menuList,
+        token: payload.token
     }
 }
 
@@ -46,8 +38,11 @@ const reducerFn = (state=initState, action) => {
     switch (action.type) {
         case 'APP.onLogout':
             return onLogout(state, action);
+        case 'APP.onLogin':
+            return onLogin(state, action);
         case 'TEST::add':
             return onTestAdd(state, action);
+        
         default:
             return actDefault(state, action);
     }

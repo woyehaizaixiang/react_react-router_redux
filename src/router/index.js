@@ -21,7 +21,7 @@ export default class router extends Component {
                         <Route path="/404" exact component={ NotFound } />
                         
                         <Route
-                            path="/app"
+                            path="/"
                             component={ App }
                         />
 
