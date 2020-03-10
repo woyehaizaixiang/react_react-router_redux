@@ -42,3 +42,11 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* 美化webkit内核滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #777;
+}
