@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import axios from '@/util/axios.init.js';
 import style from './login.module.scss';
-import './login.module.scss';
 import { onLogin } from '@/action/app-action';
 
 const mapStateToProps = (state, ownProps) => {
